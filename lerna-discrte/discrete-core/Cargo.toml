@@ -1,0 +1,20 @@
+[package]
+name = "discrete-core"
+version = "0.1.0"
+authors = ["WmW <zhouzheng0646@qq.com>"]
+edition = "2021"
+
+[features]
+default = ["console_error_panic_hook"]
+
+[dependencies]
+wasm-bindgen = "0.2.63"
+console_error_panic_hook = { version = "0.1.6", optional = true }
+# 微型内存分配器,体积小,但是性能不如rust默认的分配器
+# wee_alloc = { version = "0.4.5", optional = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.13"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
