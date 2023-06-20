@@ -3,8 +3,11 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import Date from '../component/date'
 import { getSortedPostsData } from "../lib/posts"
+import { sum } from '../pkg/start_nextjs';
 
 export default function Home({ allPostsData }) {
+  const sumValue = sum(1, 2);
+  console.log("%c 🍒 sum:", "font-size:22px;background-color:rgb(222, 28, 49);color:#fff;", sum);
   return (
     <div className={styles.container}>
       <Head>
