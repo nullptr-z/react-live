@@ -1,0 +1,30 @@
+const handlebars = require('handlebars');
+
+const layoutSource = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{{ pageTitle }}</title>
+    </head>
+    <body>
+        {{{ bodyContent }}}
+    </body>
+    </html>
+`;
+
+const homeSource = `
+    {{! 使用布局模板来包裹页面内容 }}
+    {{#block "bodyContent"}}
+        <h1>欢迎来到首页！</h1>
+    {{/block}}
+`;
+
+const layoutTemplate = handlebars.compile(layoutSource);
+const homeTemplate = handlebars.compile(homeSource);
+
+const data = {};
+
+// 渲染 home 模板并传递数据
+const renderedHTML = layoutTemplate({ pageTitle: '首页', bodyContent: homeTemplate(data) });
+
+console.log(renderedHTML);

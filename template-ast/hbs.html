@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CMS Platform</title>
+    <!-- 引入Handlebars库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+</head>
+<body>
+    <!-- 定义页头模板 -->
+    <script id="header-template" type="text/x-handlebars-template">
+        <header>
+            <!-- 这里可以放置页头内容，如导航菜单、Logo等 -->
+            <h1>CMS Platform</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <!-- 其他导航项 -->
+                </ul>
+            </nav>
+        </header>
+    </script>
+
+    <!-- 定义页脚模板 -->
+    <script id="footer-template" type="text/x-handlebars-template">
+        <footer>
+            <!-- 这里可以放置页脚内容，如版权信息、联系方式等 -->
+            <p>&copy; 2023 CMS Platform. All rights reserved.</p>
+        </footer>
+    </script>
+
+    <!-- 定义页面主要内容的模板 -->
+    <script id="page-template" type="text/x-handlebars-template">
+        {{> header-template}}
+
+        <main>
+            <!-- 这里放置每个页面的主要内容 -->
+            <h2>{{pageTitle}}</h2>
+            <p>{{pageContent}}</p>
+        </main>
+
+        {{> footer-template}}
+    </script>
+
+    <!-- 显示模板内容的容器 -->
+    <div id="content-container"></div>
+
+    <!-- 渲染页面 -->
+    <script>
+        // 假设从后端获取的页面数据
+        const pageData = {
+            pageTitle: "Welcome to CMS Platform",
+            pageContent: "This is the homepage content.",
+        };
+
+        // 获取模板
+        const headerTemplate = document.getElementById("header-template").innerHTML;
+        const footerTemplate = document.getElementById("footer-template").innerHTML;
+        const pageTemplate = document.getElementById("page-template").innerHTML;
+
+        // 编译模板
+        const compiledHeaderTemplate = Handlebars.compile(headerTemplate);
+        const compiledFooterTemplate = Handlebars.compile(footerTemplate);
+        const compiledPageTemplate = Handlebars.compile(pageTemplate);
+
+        // 渲染模板
+        const headerHTML = compiledHeaderTemplate();
+        const footerHTML = compiledFooterTemplate();
+        const pageHTML = compiledPageTemplate(pageData);
+
+        // 将渲染后的内容插入到页面中
+        document.getElementById("content-container").innerHTML = headerHTML + pageHTML + footerHTML;
+    </script>
+</body>
+</html>
